@@ -21,15 +21,12 @@ pipeline {
                 bat 'npm test'
             }
         }
-        // Se omite la etapa de Deploy para no arrancar el servidor en Jenkins.
-        /*
-        stage('Deploy') {
+        stage('Docker Build') {
             steps {
-                echo "Desplegando aplicación..."
-                bat 'npm start'
+                echo "Construyendo imagen Docker..."
+                bat 'docker build -t mi-app:latest .'
             }
         }
-        */
     }
     post {
         success {
